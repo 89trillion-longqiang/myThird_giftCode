@@ -1,9 +1,9 @@
 package main
 
 import (
+	"giftCode/route"
+	"giftCode/setUpRedis"
 	"github.com/go-redis/redis"
-	"route"
-	"setUpRedis"
 )
 
 
