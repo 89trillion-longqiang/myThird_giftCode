@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"testing"
 
-	"route"
+	"giftCode/gift"
 )
 
 func Test_GetRandCode(t *testing.T){
 
-	retString := route.GetRandCode(8)
+	retString := gift.GetRandCode(8)
 	if len(retString) != 8{
 		fmt.Println("Test_GetRandCode error")
 	}else {

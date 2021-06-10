@@ -3,13 +3,13 @@ package setUpRedis
 import (
 	"context"
 	"fmt"
-	"github.com/go-redis/redis"
 	"time"
 
 	"giftCode/gift"
+	"github.com/go-redis/redis"
 )
 var rdb *redis.Client  ///声明一个全局的rdb变量
-///初始化连接
+// InitClient /初始化连接
 func InitClient( rd *redis.Client) (err error) {
 	rdb = rd
 	rdb = redis.NewClient(&redis.Options{
@@ -25,11 +25,12 @@ func InitClient( rd *redis.Client) (err error) {
 	_, err = rdb.Ping(ctx).Result()
 	return err
 }
+
 func HashSet(g gift.Gift) error{
 	ctx := context.Background()
 
 	if g.IsEmpty() {
-		err := fmt.Errorf("Gift struct is empty")
+		err := fmt.Errorf("gift struct is empty")
 		return err
 	}
 	if ExistsKey(g.GiftCode) {
@@ -53,6 +54,7 @@ func HashSet(g gift.Gift) error{
 	}
 	return nil
 }
+
 func HashSetMap(gmap map[string]string) error {
 
 	gm := map[string]interface{}{
@@ -75,7 +77,6 @@ func HashSetMap(gmap map[string]string) error {
 	fmt.Println(gm)
 	return nil
 }
-
 ///HGETALL
 func HashGetAll(giftCode string) ( a map[string]string, err error){
 	ctx := context.Background()
